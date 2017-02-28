@@ -1,0 +1,42 @@
+export const ActionsId  = {
+    CREATE_PROPERTY: "CREATE_PROPERTY"
+};
+
+export const constants  = {
+    CANCEL_TEXT: "Cancel",
+    COMPONENT_DIV_ID: "spSearchBaseDiv",
+    CONFIRM_DELETE_PROPERTY: "Are you sure you want to remove this property?",
+    CREATE_TEXT: "Create",
+    DELETE_TEXT: "Delete",
+    EDIT_TEXT: "Edit",
+    EMPTY_STRING: "",
+    EMPTY_TEXTBOX_ERROR_MESSAGE: "The value can not be empty",
+    ERROR_MESSAGE_CHECK_USER_PERMISSIONS: "An error occurred checking current user's permissions",
+    ERROR_MESSAGE_CREATE_PROPERTY: "An error occurred creating a new web property",
+    ERROR_MESSAGE_DELETE_PROPERTY: "An error occurred deleting the selected web property",
+    ERROR_MESSAGE_GET_ALL_PROPERTIES: "An error occurred gettin all web properties",
+    ERROR_MESSAGE_UPDATE_PROPERTY: "An error occurred updating the selected web property",
+    MESSAGE_PROPERTY_CREATED: "A new property has been created.",
+    MESSAGE_PROPERTY_DELETED: "The selected property has been deleted.",
+    MESSAGE_PROPERTY_UPDATED: "The selected property has been updated.",
+    MESSAGE_USER_NO_PERMISSIONS: "The current user does NOT have permissions to work with the web property bags.",
+    MODAL_DIALOG_TITLE: "Search",
+    MODAL_DIALOG_WIDTH: "700px",
+    NEW_PROPERTY_KEY_PLACEHOLDER: "Property Name",
+    NEW_PROPERTY_KEY_TITLE: "New property name",
+    NEW_PROPERTY_TITLE: "New web property",
+    NEW_PROPERTY_VALUE_PLACEHOLDER: "Property Value",
+    NEW_PROPERTY_VALUE_TITLE: "New property value",
+    PERCET_STRING: "%",
+    PROPERTY_REST_DECODE_REGEX: /_x00([0-9A-F]{2})_/gi,
+    PROPERTY_REST_DOUBLEQUOTES: "&quot;",
+    PROPERTY_REST_DOUBLEQUOTES_REGEX: /"/g,
+    PROPERTY_REST_PREFIX: "OData_",
+    PROPERTY_REST_REQUEST_URL: "/_api/search/query?querytext='nec'",
+    PROPERTY_REST_UNDERSCORE_PREFIX_REGEX: /x00/gi,
+    PROPERTY_REST_UNDERSCORE_REGEX: /_/gi,
+    SAVE_TEXT: "Save",
+    STRING_STRING: "string",
+    TEXTBOX_PREFIX: "spPropInput_",
+    UNDEFINED_STRING: "undefined"
+};
