@@ -24,7 +24,7 @@ export const constants = {
     ERROR_MESSAGE_CHECK_USER_PERMISSIONS: "An error occurred checking current user's permissions",
     ERROR_MESSAGE_CREATE_CUSTOM_ACTION: "An error occurred creating a new web custom action",
     ERROR_MESSAGE_DELETE_CUSTOM_ACTION: "An error occurred deleting the selected custom action",
-    ERROR_MESSAGE_GET_ALL_CUSTOM_ACTIONS: "An error occurred gettin all custom actions",
+    ERROR_MESSAGE_GET_RESULTS: "An error occurred gettin the search results",
     ERROR_MESSAGE_UPDATE_CUSTOM_ACTION: "An error occurred updating the selected custom action",
     MESSAGE_CUSTOM_ACTION_CREATED: "A new custom action has been created.",
     MESSAGE_CUSTOM_ACTION_DELETED: "The selected custom action has been deleted.",

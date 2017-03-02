@@ -9,7 +9,6 @@ export default class SpSearchApi extends ApiBase {
             const reqUrl = `${_spPageContextInfo.webAbsoluteUrl}${constants.PROPERTY_REST_REQUEST_URL}`;
             this.getRequest(reqUrl).then((response: any) => {
                 const props: ISearchResult[] = [];
-                debugger;
                 const rawData = response.data;
              /*   for (const prop in rawData) {
                     if (rawData.hasOwnProperty(prop)) {

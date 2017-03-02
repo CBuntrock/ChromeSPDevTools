@@ -6,11 +6,14 @@ import { Button, ButtonType } from "office-ui-fabric-react/lib/Button";
 import { SearchBox } from "office-ui-fabric-react/lib/SearchBox";
 
 interface ISearchAreaProps {
-    setSearchText: (searchText: string) => IAction<string>;
     searchStr: string;
     parentOverrideClass?: string;
     referenceCallBack?: (element: HTMLElement) => void;
     children?: any;
+}
+
+interface IMapDispatchToISpPropertyBagProps {
+    actions: ISpPropertyBagActionCreatorsMapObject;
 }
 
 class SpSearchArea extends React.Component<ISearchAreaProps, {}> {
@@ -29,7 +32,7 @@ class SpSearchArea extends React.Component<ISearchAreaProps, {}> {
         return <div className="ms-Grid filters-container">
             <div className="ms-Grid-row">
                 <div className="ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6" ref={this._divRefCallBack}>
-                    <SearchBox value={this.props.searchStr} onChange={this.props.setSearchText} />
+                    <SearchBox value={this.props.searchStr}  />
                 </div>
                 <div className={this.props.parentOverrideClass || "ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6"}>
                     <Button

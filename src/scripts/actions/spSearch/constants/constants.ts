@@ -1,5 +1,5 @@
 export const ActionsId  = {
-    CREATE_PROPERTY: "CREATE_PROPERTY"
+    SET_QUERY_TEXT: "SET_QUERY_TEXT"
 };
 
 export const constants  = {

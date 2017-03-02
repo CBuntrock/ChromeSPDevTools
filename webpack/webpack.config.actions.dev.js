@@ -21,7 +21,8 @@ module.exports = {
          'spFeatures': './src/scripts/actions/spFeatures/app.tsx',
          'spSiteContent': './src/scripts/actions/spSiteContent/app.tsx',
          'spWebCustomActions': './src/scripts/actions/spCustomActions/app_webCa.ts',
-         'spSiteCustomActions': './src/scripts/actions/spCustomActions/app_siteCa.ts'
+         'spSiteCustomActions': './src/scripts/actions/spCustomActions/app_siteCa.ts',
+         'spSiteSearch': './src/scripts/actions/spSearch/app.tsx'
     },
     output: {
         path: path.join(__dirname, './../dist/actions'),
