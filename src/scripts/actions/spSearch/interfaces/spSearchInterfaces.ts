@@ -4,7 +4,12 @@ import { IAction, IMessageData } from "./../../common/interfaces";
 
 
 export interface IInitialState {
+    currentUserHasPermissions: boolean;
     isWorkingOnIt: boolean;
+    messageData: IMessageData;
+    searchText: string;
+    managedProperties: string[];
+    searchResults: ISearchResult[];
 }
 
 export interface ISearchResult {
@@ -13,7 +18,15 @@ export interface ISearchResult {
 }
 
 export interface ISpSearchActionCreatorsMapObject{
-    setQueryText: ActionCreator<IAction<string>>;
+    doSearch: (text: string) =>
+        (dispatch: Dispatch<IAction<ISearchResult[]>>) => Promise<void>;
+    setWorkingOnIt: ActionCreator<IAction<boolean>>;
+    setUserHasPermissions: ActionCreator<IAction<boolean>>;
+    setMessageData: ActionCreator<IAction<IMessageData>>;
+}
+
+export interface IMapDispatchToProps {
+    actions: ISpSearchActionCreatorsMapObject;
 }
 
 export interface ISpSearchProps {
@@ -23,7 +36,7 @@ export interface ISpSearchProps {
     messageData: IMessageData;
     searchText: string;
     managedProperties: string[];
-    actions: ISpPropertyBagActionCreatorsMapObject;
+    actions: ISpSearchActionCreatorsMapObject;
 }
 
 export interface IMapStateToProps {
@@ -32,10 +45,11 @@ export interface IMapStateToProps {
     messageData: IMessageData;
     searchText: string;
     managedProperties: string[];
+    searchResults: ISearchResult[];
 }
 
 export interface IMapStateToPropsState {
-    spPropertyBag: IInitialState;
+    spSearch: IInitialState;
 }
 
 

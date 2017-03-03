@@ -9,12 +9,12 @@ import { IMapStateToProps, IMapStateToPropsState, ISpSearchActionCreatorsMapObje
 import MessageBar from "./../../common/components/MessageBar";
 import { WorkingOnIt } from "./../../common/components/WorkingOnIt";
 import { SpSearchArea} from "./spSearchArea";
-import { SpSearchResultList} from "./spSearchResultList";
 
-interface IMapDispatchToISpPropertyBagProps {
-    actions: ISpPropertyBagActionCreatorsMapObject;
+
+interface IMapDispatchToISpSearchProps {
+    actions: ISpSearchActionCreatorsMapObject;
 }
-class SpSearch extends React.Component<ISpPropertyBagProps, {}> {
+class SpSearch extends React.Component<ISpSearchProps, {}> {
     public searchComponent: HTMLElement;
     constructor() {
         super();
@@ -33,8 +33,8 @@ class SpSearch extends React.Component<ISpPropertyBagProps, {}> {
                     messageType={this.props.messageData.type}
                     showMessage={this.props.messageData.showMessage}
                 />
-                {hasPermissions && <SpSearchArea addProperty={this.props.actions.createProperty}  />}
-                {hasPermissions && <SpSearchResultList items={this.props.webProperties} filterString={this.props.filterText} />}
+                {hasPermissions && <SpSearchArea doSearch={this.props.actions.doSearch}  />}
+
             </div>;
         }
     }
@@ -56,20 +56,21 @@ class SpSearch extends React.Component<ISpPropertyBagProps, {}> {
 
 const mapStateToProps = (state: IMapStateToPropsState, ownProps: any): IMapStateToProps => {
     return {
-        currentUserHasPermissions: state.spPropertyBag.userHasPermission,
-        filterText: state.spPropertyBag.filterText,
-        isWorkingOnIt: state.spPropertyBag.isWorkingOnIt,
-        messageData: state.spPropertyBag.messageData,
-        webProperties: state.spPropertyBag.webProperties
+        currentUserHasPermissions: state.spSearch.currentUserHasPermissions,
+        isWorkingOnIt: state.spSearch.isWorkingOnIt,
+        managedProperties: state.spSearch.managedProperties,
+        messageData: state.spSearch.messageData,
+        searchResults: state.spSearch.searchText,
+        searchText: state.spSearch.searchText
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<any>): IMapDispatchToISpPropertyBagProps => {
+const mapDispatchToProps = (dispatch: Dispatch<any>): IMapDispatchToProps => {
     return {
-        actions: bindActionCreators(propertyActionsCreatorsMap, dispatch) as any
+        actions: bindActionCreators(searchActionsCreatorsMap, dispatch) as any
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpPropertyBag);
+export default connect(mapStateToProps, mapDispatchToProps)(SpSearch);
 
 /* tslint:enable:max-line-length */

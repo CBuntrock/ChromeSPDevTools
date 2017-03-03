@@ -1,4 +1,5 @@
 export const ActionsId  = {
+    HANDLE_ASYNC_ERROR: "HANDLE_ASYNC_ERROR",
     SET_QUERY_TEXT: "SET_QUERY_TEXT"
 };
 
@@ -14,7 +15,7 @@ export const constants  = {
     ERROR_MESSAGE_CHECK_USER_PERMISSIONS: "An error occurred checking current user's permissions",
     ERROR_MESSAGE_CREATE_PROPERTY: "An error occurred creating a new web property",
     ERROR_MESSAGE_DELETE_PROPERTY: "An error occurred deleting the selected web property",
-    ERROR_MESSAGE_GET_ALL_PROPERTIES: "An error occurred gettin all web properties",
+    ERROR_MESSAGE_GET_ALL_RESULTS: "An error occurred gettin the search results",
     ERROR_MESSAGE_UPDATE_PROPERTY: "An error occurred updating the selected web property",
     MESSAGE_PROPERTY_CREATED: "A new property has been created.",
     MESSAGE_PROPERTY_DELETED: "The selected property has been deleted.",

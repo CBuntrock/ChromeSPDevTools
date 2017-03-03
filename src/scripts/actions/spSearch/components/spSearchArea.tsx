@@ -2,14 +2,17 @@ import * as React from "react";
 
 import { IAction } from "./../../common/interfaces";
 
+import { ISearchResult } from "../interfaces/spSearchInterfaces";
+
 import { Button, ButtonType } from "office-ui-fabric-react/lib/Button";
 import { SearchBox } from "office-ui-fabric-react/lib/SearchBox";
 
+
 interface ISearchAreaProps {
-    searchStr: string;
+    setQueryText: (searchText: string) => IAction<ISearchResult[]>;
+    searchText: string;
     parentOverrideClass?: string;
     referenceCallBack?: (element: HTMLElement) => void;
-    children?: any;
 }
 
 interface IMapDispatchToISpPropertyBagProps {
@@ -40,6 +43,7 @@ class SpSearchArea extends React.Component<ISearchAreaProps, {}> {
                         icon="Search"
                         rootProps={{ title: "Delete" }}
                         ariaLabel="Search"
+                        onClick={this.props.doSearch}
                      />
                 </div>
             </div>
@@ -54,3 +58,4 @@ class SpSearchArea extends React.Component<ISearchAreaProps, {}> {
 }
 
 export default SpSearchArea;
+

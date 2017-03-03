@@ -10,22 +10,11 @@ export default class SpSearchApi extends ApiBase {
             this.getRequest(reqUrl).then((response: any) => {
                 const props: ISearchResult[] = [];
                 const rawData = response.data;
-             /*   for (const prop in rawData) {
-                    if (rawData.hasOwnProperty(prop)) {
-                        const propVal = rawData[prop];
-                        if (typeof (propVal) === constants.STRING_STRING) {
-                            // tslint:disable-next-line:max-line-length
-                            const value = propVal.replace(constants.PROPERTY_REST_DOUBLEQUOTES_REGEX, constants.PROPERTY_REST_DOUBLEQUOTES);
-                            props.push({
-                                key: this.decodeSpCharacters(prop),
-                                value
-                            });
-                        }
-                    }
-                }*/
+
                 resolve(props);
             }).catch((error: any) => {
                 this.reject(error);
             });
+        });
     }
 }
