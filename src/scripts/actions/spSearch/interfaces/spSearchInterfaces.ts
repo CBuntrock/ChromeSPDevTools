@@ -2,9 +2,13 @@
 import { ActionCreator, ActionCreatorsMapObject, Dispatch } from "redux";
 import { IAction, IMessageData } from "./../../common/interfaces";
 
+export interface ISearchResult {
+    id: string;
+    title: string;
+}
 
 export interface IInitialState {
-    currentUserHasPermissions: boolean;
+    userHasPermission: boolean;
     isWorkingOnIt: boolean;
     messageData: IMessageData;
     searchText: string;
@@ -12,16 +16,12 @@ export interface IInitialState {
     searchResults: ISearchResult[];
 }
 
-export interface ISearchResult {
-    id: string;
-    title: string;
-}
 
-export interface ISpSearchActionCreatorsMapObject{
-    doSearch: (text: string) =>
-        (dispatch: Dispatch<IAction<ISearchResult[]>>) => Promise<void>;
+export interface ISpSearchActionCreatorsMapObject extends ActionCreatorsMapObject{
+
     setWorkingOnIt: ActionCreator<IAction<boolean>>;
-    setUserHasPermissions: ActionCreator<IAction<boolean>>;
+    checkUserPermissions: (permissionKing: SP.PermissionKind) =>
+        (dispatch: Dispatch<IAction<ISearchResult[]>>) => Promise<void>;
     setMessageData: ActionCreator<IAction<IMessageData>>;
 }
 
@@ -51,5 +51,15 @@ export interface IMapStateToProps {
 export interface IMapStateToPropsState {
     spSearch: IInitialState;
 }
+
+export interface IMapStateToProps {
+    currentUserHasPermissions: boolean;
+    isWorkingOnIt: boolean;
+    messageData: IMessageData;
+    searchText: string;
+    managedProperties: string[];
+    searchResults: ISearchResult[];
+}
+
 
 

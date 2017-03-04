@@ -114,4 +114,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): ISpPropertyBagItemActions 
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpPropertyBagItem);
+export default connect(mapStateToProps, mapDispatchToProps)(SpSearchResultItem);

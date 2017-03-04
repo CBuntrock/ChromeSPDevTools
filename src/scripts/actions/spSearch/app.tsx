@@ -24,6 +24,7 @@ class App extends AppBase {
                         modalDialogTitle={constants.MODAL_DIALOG_TITLE}
                         modalWidth={constants.MODAL_DIALOG_WIDTH}
                     ><SpSearch
+                        closeWindowFunction={that.remove}
                         parentOverrideClass="ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6"
                     />
                     </SpCustomModalWrapper>

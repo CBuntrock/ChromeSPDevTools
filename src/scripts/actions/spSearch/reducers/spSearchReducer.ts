@@ -6,7 +6,7 @@ import { IInitialState, IMapDispatchToProps } from "../interfaces/spSearchInterf
 import { ActionsId as actions, constants } from "./../constants/constants";
 
 const initialState: IInitialState = {
-    currentUserHasPermissions: false,
+    userHasPermission: false,
     isWorkingOnIt: true,
     managedProperties: [],
     messageData: {
@@ -22,6 +22,18 @@ const initialState: IInitialState = {
 export const spSearchReducer = (state: IInitialState = initialState, action: IAction<any>): IInitialState => {
 
     switch (action.type) {
+        case actions.SET_MESSAGE_DATA:
+            const messageData: IMessageData = action.payload;
+            return { ...state, messageData };
+        case actions.SET_USER_PERMISSIONS:
+            const userHasPermission: boolean = action.payload;
+            return { ...state, userHasPermission };
+        case actions.SET_WORKING_ON_IT:
+            const isWorkingOnIt: boolean = action.payload;
+            return { ...state, isWorkingOnIt };
+        case actions.HANDLE_ASYNC_ERROR:
+            const errorMessage: IMessageData = action.payload;
+            return { ...state, isWorkingOnIt: false, messageData: errorMessage };
         default:
             return state;
     }

@@ -10,6 +10,27 @@ import SpSearchApi from "../api/SpSearchApi";
 
 const api = new SpSearchApi();
 
+const setWorkingOnIt: ActionCreator<IAction<boolean>> = (isWorkingOnIt: boolean): IAction<boolean> => {
+    return {
+        payload: isWorkingOnIt,
+        type: actions.SET_WORKING_ON_IT
+    };
+};
+
+const setNoPermissions: ActionCreator<IAction<boolean>> = (): IAction<boolean> => {
+    return {
+        payload: true,
+        type: actions.SET_NO_PERMISSIONS
+    };
+};
+
+const setMessageData: ActionCreator<IAction<IMessageData>> = (messageData: IMessageData): IAction<IMessageData> => {
+    return {
+        payload: messageData,
+        type: actions.SET_MESSAGE_DATA
+    };
+};
+
 const handleAsyncError: ActionCreator<IAction<IMessageData>> =
     (errorMessage: string, exceptionMessage: string): IAction<IMessageData> => {
         // tslint:disable-next-line:no-console
@@ -24,6 +45,18 @@ const handleAsyncError: ActionCreator<IAction<IMessageData>> =
         };
     };
 
+const checkUserPermissions = (permissionKing: SP.PermissionKind) => {
+    return (dispatch: Dispatch<IAction<void>>) => {
+        return api.checkUserPermissions(permissionKing).then((hasPermissions: boolean) => {
+            if (!hasPermissions) {
+                dispatch(setNoPermissions());
+            }
+        }).catch((reason: any) => {
+            dispatch(handleAsyncError(constants.ERROR_MESSAGE_CHECK_USER_PERMISSIONS, reason));
+        });
+    };
+};
+
 const doSearch = (searchText: string) => {
     return (dispatch: Dispatch<IAction<ISearchResult[]>>) => {
         return api.getResults().then((results: ISearchResult[]) => {
@@ -35,7 +68,9 @@ const doSearch = (searchText: string) => {
 };
 
 const spSearchActionCreatorsMapObject: ISpSearchActionCreatorsMapObject = {
-    doSearch
+    setWorkingOnIt,
+    checkUserPermissions,
+    setMessageData
 };
 
 export default spSearchActionCreatorsMapObject;
