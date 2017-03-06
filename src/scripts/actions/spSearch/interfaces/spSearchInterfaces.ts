@@ -29,17 +29,8 @@ export interface IMapDispatchToProps {
     actions: ISpSearchActionCreatorsMapObject;
 }
 
-export interface ISpSearchProps {
-    closeWindowFunction: any;
-    currentUserHasPermissions: boolean;
-    isWorkingOnIt: boolean;
-    messageData: IMessageData;
-    searchText: string;
-    managedProperties: string[];
-    actions: ISpSearchActionCreatorsMapObject;
-}
 
-export interface IMapStateToProps {
+ export interface IMapStateToProps {
     currentUserHasPermissions: boolean;
     isWorkingOnIt: boolean;
     messageData: IMessageData;
@@ -47,19 +38,14 @@ export interface IMapStateToProps {
     managedProperties: string[];
     searchResults: ISearchResult[];
 }
+
+
+
 
 export interface IMapStateToPropsState {
     spSearch: IInitialState;
 }
 
-export interface IMapStateToProps {
-    currentUserHasPermissions: boolean;
-    isWorkingOnIt: boolean;
-    messageData: IMessageData;
-    searchText: string;
-    managedProperties: string[];
-    searchResults: ISearchResult[];
-}
 
 
 
