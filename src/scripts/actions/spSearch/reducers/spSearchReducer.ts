@@ -7,7 +7,7 @@ import { ActionsId as actions, constants } from "./../constants/constants";
 
 const initialState: IInitialState = {
     userHasPermission: false,
-    isWorkingOnIt: true,
+    isWorkingOnIt: false,
     managedProperties: [],
     messageData: {
         message: constants.EMPTY_STRING,

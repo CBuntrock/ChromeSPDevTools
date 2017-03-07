@@ -18,7 +18,8 @@ export interface IInitialState {
 
 
 export interface ISpSearchActionCreatorsMapObject extends ActionCreatorsMapObject{
-
+    doSearch: (searchText: string) =>
+        (dispatch: Dispatch<IAction<ISearchResult[]>>) => Promise<void>;
     setWorkingOnIt: ActionCreator<IAction<boolean>>;
     checkUserPermissions: (permissionKing: SP.PermissionKind) =>
         (dispatch: Dispatch<IAction<ISearchResult[]>>) => Promise<void>;

@@ -38,7 +38,7 @@ class SpSearch extends React.Component<ISpSearchProps, {}> {
                     messageType={this.props.messageData.type}
                     showMessage={this.props.messageData.showMessage}
                 />
-                {hasPermissions && <SpSearchArea searchText={this.props.searchText} managedProperties={this.props.managedProperties} />}
+                <SpSearchArea doSearch={this.props.actions.doSearch}/>
 
             </div>;
         }

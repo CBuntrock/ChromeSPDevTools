@@ -68,6 +68,7 @@ const doSearch = (searchText: string) => {
 };
 
 const spSearchActionCreatorsMapObject: ISpSearchActionCreatorsMapObject = {
+    doSearch,
     setWorkingOnIt,
     checkUserPermissions,
     setMessageData
