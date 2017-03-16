@@ -60,12 +60,23 @@ const checkUserPermissions = (permissionKing: SP.PermissionKind) => {
 const doSearch = (searchText: string) => {
     return (dispatch: Dispatch<IAction<ISearchResult[]>>) => {
         return api.getResults().then((results: ISearchResult[]) => {
-            console.log(results.length);
+            dispatch(showResults(results));
         }).catch((reason: any) => {
             dispatch(handleAsyncError(constants.ERROR_MESSAGE_GET_ALL_RESULTS, reason));
         });
     };
 };
+
+
+const showResults: ActionCreator<IAction<ISearchResult[]>> =
+    (results: ISearchResult[]): IAction<ISearchResult[]> => {
+        return {
+            payload: results ,
+            type: actions.SHOW_RESULTS
+        };
+    };
+
+
 
 const spSearchActionCreatorsMapObject: ISpSearchActionCreatorsMapObject = {
     doSearch,

@@ -10,6 +10,7 @@ import MessageBar from "./../../common/components/MessageBar";
 import { WorkingOnIt } from "./../../common/components/WorkingOnIt";
 import { IAction, IMessageData } from "./../../common/interfaces";
 import SpSearchArea from "./spSearchArea";
+import SpFeaturesList from "./spSearchResultList";
 
 interface ISpSearchProps {
     currentUserHasPermissions: boolean;
@@ -39,6 +40,7 @@ class SpSearch extends React.Component<ISpSearchProps, {}> {
                     showMessage={this.props.messageData.showMessage}
                 />
                 <SpSearchArea doSearch={this.props.actions.doSearch}/>
+                <SpFeaturesList items={this.props.searchResults}/>
 
             </div>;
         }

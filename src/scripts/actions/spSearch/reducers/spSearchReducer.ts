@@ -5,6 +5,8 @@ import { IInitialState, IMapDispatchToProps } from "../interfaces/spSearchInterf
 
 import { ActionsId as actions, constants } from "./../constants/constants";
 
+import { ISearchResult } from "../interfaces/spSearchInterfaces";
+
 const initialState: IInitialState = {
     userHasPermission: false,
     isWorkingOnIt: false,
@@ -34,6 +36,13 @@ export const spSearchReducer = (state: IInitialState = initialState, action: IAc
         case actions.HANDLE_ASYNC_ERROR:
             const errorMessage: IMessageData = action.payload;
             return { ...state, isWorkingOnIt: false, messageData: errorMessage };
+        case actions.SHOW_RESULTS:
+            const results: ISearchResult[] = action.payload;
+            return {
+                ...state,
+                searchResults: results,
+                isWorkingOnIt: false
+            };
         default:
             return state;
     }

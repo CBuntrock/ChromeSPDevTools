@@ -1,27 +1,28 @@
-import { List } from "office-ui-fabric-react/lib/List";
 import * as React from "react";
-import { IProperty } from "../interfaces/spPropertyBagInterfaces";
+
+import { FocusZone, FocusZoneDirection } from "office-ui-fabric-react/lib/FocusZone";
+import { Image } from "office-ui-fabric-react/lib/Image";
+import { List } from "office-ui-fabric-react/lib/List";
+import { ISearchResult } from "../interfaces/spSearchInterfaces";
 import { constants } from "./../constants/constants";
-import SpPropertyBagItem from "./SpPropertyBagItem";
+import SpFeaturesItem from "./SpSearchResultItem";
 
-interface ISpPropertyBagListProps {
-    items: IProperty[];
-    filterString: string;
+interface ISpFeaturesListProps {
+    items: ISearchResult[];
 }
-export const SpPropertyBagList:
-    React.StatelessComponent<ISpPropertyBagListProps> = (props: ISpPropertyBagListProps) => {
 
-        const filter: string = props.filterString.toLowerCase();
-        const properties: IProperty[] = filter !== constants.EMPTY_STRING
-            ? props.items.filter((prop: IProperty, index: number) => {
-                return prop.key.toLowerCase().indexOf(filter) >= 0 || prop.value.toLowerCase().indexOf(filter) >= 0;
-            }) : props.items;
+const SpFeaturesList: React.StatelessComponent<ISpFeaturesListProps> = (props: ISpFeaturesListProps) => {
 
-        properties.sort((a, b) => {
-            return a.key.localeCompare(b.key);
-        });
-        const renderListItem = (item: IProperty, index: number) => {
-            return (<SpPropertyBagItem item={item} key={item.key} itemIndex={index} />);
-        };
-        return (<List items={properties} onRenderCell={renderListItem} />);
+    const items: ISearchResult[] = props.items;
+
+    const renderItem = (item: ISearchResult, index: number) => {
+        return <SpFeaturesItem item={item} key={index} />;
     };
+    return <div>
+        <FocusZone direction={FocusZoneDirection.vertical} >
+            <List items={items} onRenderCell={renderItem} />
+        </FocusZone>
+    </div>;
+};
+
+export default SpFeaturesList;

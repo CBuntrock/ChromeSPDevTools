@@ -1,117 +1,23 @@
+import { FocusZone, FocusZoneDirection } from "office-ui-fabric-react/lib/FocusZone";
+import { Image } from "office-ui-fabric-react/lib/Image";
+import { List } from "office-ui-fabric-react/lib/List";
+import { Toggle } from "office-ui-fabric-react/lib/Toggle";
 import * as React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import propertyActionsCreatorsMap from "../actions/spPropertyBagActions";
-import { IProperty } from "../interfaces/spPropertyBagInterfaces";
-import { IMapStateToProps, IMapStateToPropsState } from "../interfaces/spPropertyBagInterfaces";
-import { constants } from "./../constants/constants";
-import { SpPropertyBagItemForm } from "./spPropertyBagItemForm";
+import { ISearchResult } from "../interfaces/spSearchInterfaces";
 
-interface ISpPropertyBagItemActions {
-    updateProperty: Function;
-    deleteProperty: Function;
+interface ISpFeaturesItemProps {
+    item: ISearchResult;
 }
 
-interface ISpPropertyBagItemProps {
-    item: IProperty;
-    itemIndex: number;
-    updateProperty: Function;
-    deleteProperty: Function;
-}
+const SpSearchResultItem: React.StatelessComponent<ISpFeaturesItemProps> = (props: ISpFeaturesItemProps) => {
+    // tslint:disable-next-line:max-line-length
+    const itemClassName = "ms-ListBasicExample-itemContent ms-ListBasicExample-featureName ms-font-m ms-fontColor-themePrimary ms-fontWeight-semibold";
+    return <div className="ms-ListBasicExample-itemCell" id={props.item.id}>
+        <div className={itemClassName}>
+            {props.item.title}
+        </div>
+    </div>;
 
-interface ISpPropertyBagItemState {
-    itemInputValue: string;
-    inEditMode: boolean;
-}
-
-class SpSearchResultItem extends React.Component<ISpPropertyBagItemProps, ISpPropertyBagItemState> {
-    constructor() {
-        super();
-        this.state = {
-            inEditMode: false,
-            itemInputValue: constants.EMPTY_STRING
-        };
-        this.onUpdateClick = this.onUpdateClick.bind(this);
-        this.onUpdateBtnClick = this.onUpdateBtnClick.bind(this);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.getErrorMessage = this.getErrorMessage.bind(this);
-        this.onValueInputChange = this.onValueInputChange.bind(this);
-    }
-    public render() {
-        const isEditMode: boolean = this.state.inEditMode;
-        const inputId: string = this.getInputId();
-
-        return <SpPropertyBagItemForm
-                    inputId={inputId}
-                    inputValue={this.state.itemInputValue}
-                    keyValue={this.props.item.key}
-                    isEditMode={isEditMode}
-                    getErrorMessage={this.getErrorMessage}
-                    onInputValueChange={this.onValueInputChange}
-                    topBtnClick={isEditMode ? this.onUpdateClick : this.onDeleteClick}
-                    bottomBtnClick={this.onUpdateBtnClick}
-        />;
-    }
-    protected componentDidUpdate() {
-        if (this.state.inEditMode) {
-            const inputId: string = this.getInputId();
-            const input = document.getElementById(inputId);
-            if (input !== null && typeof input !== constants.UNDEFINED_STRING) {
-                input.focus();
-            }
-        }
-    }
-    protected componentDidMount() {
-        this.setState({
-            itemInputValue: this.props.item.value
-        } as ISpPropertyBagItemState);
-    }
-
-    private getInputId() {
-        return "spPropInput_" + this.props.item.key.trim();
-    }
-    private onDeleteClick(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        if (confirm(constants.CONFIRM_DELETE_PROPERTY)) {
-            this.props.deleteProperty(this.props.item);
-        }
-        return false;
-    }
-    private onUpdateClick(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        this.props.updateProperty({ ...this.props.item, value: this.state.itemInputValue });
-        return false;
-    }
-    private onValueInputChange(inputText: string) {
-        this.setState({ ...this.state, itemInputValue: inputText });
-        return false;
-    }
-    private onUpdateBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        this.setState({ ...this.state, inEditMode: !this.state.inEditMode, itemInputValue: this.props.item.value });
-        return false;
-    }
-
-    private getErrorMessage(value: string): string {
-        return (value === constants.EMPTY_STRING && this.state.inEditMode)
-            ? constants.EMPTY_TEXTBOX_ERROR_MESSAGE
-            : constants.EMPTY_STRING;
-    }
-}
-
-const mapStateToProps = (state: IMapStateToPropsState, ownProps: any): any => {
-    return {};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<any>): ISpPropertyBagItemActions => {
-    return {
-        deleteProperty: (property: IProperty) => {
-            dispatch(propertyActionsCreatorsMap.deleteProperty(property));
-        },
-        updateProperty: (property: IProperty) => {
-            dispatch(propertyActionsCreatorsMap.updateProperty(property));
-        }
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SpSearchResultItem);
+export default SpSearchResultItem;
